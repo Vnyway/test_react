@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .page-button {
   width: 200px;
   height: 48px;
@@ -7,10 +12,21 @@
   font-weight: 300;
   font-size: 14px;
   line-height: 20px;
-  border-width: 1px;
-  border-color: #c4c4c4;
+  border: #c4c4c4 1px solid;
+  text-decoration: none;
+  color: #000000;
 }
 
 .selected-page-button {
   background-color: #c4c4c4;
+}
+
+.header {
+  height: 88px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  border-bottom: #000000 1px solid;
 }
