@@ -4,6 +4,8 @@
 :root {
   --primary-color: #000000;
   --secondary-color: #c4c4c4;
+  --custom-gray: #5e626b;
+  --input-border: #e3e8ee;
 }
 
 * {
@@ -13,6 +15,24 @@
   font-weight: 300;
   font-size: 14px;
   line-height: 20px;
+}
+
+*::-webkit-scrollbar {
+  width: 7px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #869dc833;
+  border-radius: 8px;
+}
+
+*::-webkit-scrollbar-button {
+  display: none;
 }
 
 h1 {
@@ -59,4 +79,63 @@ h1 {
   justify-content: center;
   gap: 20px;
   border-bottom: var(--primary-color) 1px solid;
+}
+
+/* options with headings */
+
+.options-with-heading {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-weight: 400;
+  color: var(--custom-gray);
+}
+
+.options-with-heading .drop-down-menu {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+}
+
+.options-with-heading .default-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px 8px 24px;
+  height: 34px;
+}
+
+.options-with-heading .default-option-closed {
+  border: var(--input-border) 1px solid;
+}
+
+.options-with-heading .default-option-opened {
+  border: var(--primary-color) 1px solid;
+  border-bottom: #ffffff;
+}
+
+.options-with-heading .arrow-opened {
+  rotate: 180deg;
+}
+
+.options-with-heading .options-closed {
+  display: none;
+}
+
+.options-with-heading .options-opened {
+  max-height: 200px;
+  overflow-y: auto;
+  scrollbar-width: 4px;
+  display: flex;
+  flex-direction: column;
+  border: var(--primary-color) 1px solid;
+  border-top: #ffffff;
+}
+
+.options-with-heading .option {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px 8px 24px;
+  height: 34px;
+  cursor: default;
 }
