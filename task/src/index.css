@@ -93,8 +93,9 @@ h1 {
 
 .options-with-heading .drop-down-menu {
   display: flex;
+  position: relative;
   flex-direction: column;
-  max-width: 500px;
+  width: 500px;
 }
 
 .options-with-heading .default-option {
@@ -125,6 +126,11 @@ h1 {
 .options-with-heading .options-opened {
   max-height: 200px;
   overflow-y: auto;
+  position: absolute;
+  z-index: 1;
+  top: 51px;
+  background: #ffffff;
+  width: 498px;
   scrollbar-width: 4px;
   display: flex;
   flex-direction: column;
@@ -138,4 +144,16 @@ h1 {
   padding: 8px 12px 8px 24px;
   height: 34px;
   cursor: default;
+}
+
+.default-option .option-input {
+  outline: none;
+  border: none;
+}
+
+.options-with-heading .heading-wrapper {
+  width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

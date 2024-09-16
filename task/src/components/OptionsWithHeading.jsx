@@ -12,7 +12,7 @@ const OptionsWithHeading = ({ heading, values, selected, setSelected }) => {
           }`}>
           <p>{selected}</p>
           <img
-            className={opened && "arrow-opened"}
+            className={opened ? "arrow-opened" : ""}
             src="./images/arrow.png"
             alt="open menu"
           />
