@@ -148,7 +148,6 @@ h2 {
 
 .options-with-heading .options-opened {
   max-height: 200px;
-
   overflow-y: auto;
   position: absolute;
   z-index: 1;
@@ -211,4 +210,27 @@ h2 {
   display: flex;
   gap: 20px;
   justify-content: end;
+}
+
+.options-with-heading .dropdown-option {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 12px 8px 24px;
+  height: 34px;
+  cursor: default;
+}
+
+.options-with-heading .dropdown-option button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  border: var(--primary-color) 1px solid;
+  width: 24px;
+  height: 24px;
+}
+
+.options-with-heading .selected-dropdown-option button {
+  background: var(--primary-color);
 }

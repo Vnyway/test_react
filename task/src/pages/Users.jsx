@@ -1,7 +1,18 @@
+import { useState } from "react";
+import CustomDropdown from "../components/CustomDropdown";
+import { departments } from "../constants";
+
 const Users = () => {
+  const [selectedDepartments, setSelectedDepartments] = useState([]);
   return (
     <div>
-      <div></div>
+      <CustomDropdown
+        name="Departments"
+        fields={departments}
+        selectedFields={selectedDepartments}
+        setSelectedFields={setSelectedDepartments}
+        disabled={false}
+      />
     </div>
   );
 };

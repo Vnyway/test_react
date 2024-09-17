@@ -9,31 +9,37 @@ const CustomDropdown = ({
 }) => {
   const [opened, setOpened] = useState(false);
 
-  // Toggle the field in and out of selectedFields
   const handleSelectField = (field) => {
+    // Check if the field is already selected
     const isAlreadySelected = selectedFields.some(
       (selectedField) => selectedField.value === field.value
     );
 
-    if (isAlreadySelected) {
-      // Remove the field if it's already selected
+    console.log(isAlreadySelected);
+
+    // Only add the field if it's not already selected
+    if (!isAlreadySelected) {
+      setSelectedFields([
+        ...selectedFields,
+        {
+          name: field.name,
+          value: field.value,
+        },
+      ]);
+    } else {
       setSelectedFields(
         selectedFields.filter(
           (selectedField) => selectedField.value !== field.value
         )
       );
-    } else {
-      // Add the field if it's not selected
-      setSelectedFields([...selectedFields, field]);
     }
   };
 
   return (
     <div className="options-with-heading">
-      <div
-        onClick={() => setOpened((prev) => !prev)}
-        className="drop-down-menu">
+      <div className="drop-down-menu">
         <div
+          onClick={() => setOpened((pv) => !pv)}
           className={`default-option ${
             opened ? "default-option-opened" : "default-option-closed"
           }`}>
@@ -53,13 +59,16 @@ const CustomDropdown = ({
             <div
               key={field.value}
               onClick={() => handleSelectField(field)}
-              className={`option ${
+              className={`dropdown-option ${
                 selectedFields.some(
                   (selectedField) => selectedField.value === field.value
                 )
-                  ? "selected-option" // Add selected class for styling
+                  ? "selected-dropdown-option"
                   : ""
               }`}>
+              <button>
+                <img src="./images/check.png" alt="check" />
+              </button>
               {field.name}
             </div>
           ))}
