@@ -42,13 +42,20 @@ h1 {
   line-height: 32px;
 }
 
+h2 {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+}
+
 .page-wrapper {
   margin: 80px 100px;
   border: var(--primary-color) 1px solid;
   padding: 60px 80px 80px 80px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  align-items: center;
+  gap: 80px;
 }
 
 .button-action {
@@ -100,6 +107,7 @@ h1 {
 /* options with headings */
 
 .options-with-heading {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -111,7 +119,6 @@ h1 {
   display: flex;
   position: relative;
   flex-direction: column;
-  width: 500px;
 }
 
 .options-with-heading .default-option {
@@ -141,12 +148,14 @@ h1 {
 
 .options-with-heading .options-opened {
   max-height: 200px;
+
   overflow-y: auto;
   position: absolute;
   z-index: 1;
   top: 51px;
   background: #ffffff;
-  width: 498px;
+  left: 0;
+  right: 0;
   scrollbar-width: 4px;
   display: flex;
   flex-direction: column;
@@ -165,11 +174,41 @@ h1 {
 .default-option .option-input {
   outline: none;
   border: none;
+  width: 100%;
 }
 
 .options-with-heading .heading-wrapper {
-  width: 500px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.username-wrapper {
+  width: 100%;
+}
+
+.username-wrapper-wrapper {
+  width: calc(50% - 40px);
+}
+
+.user-info {
+  width: 100%;
+  gap: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-info .change-info {
+  width: 100%;
+  display: flex;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+.buttons-wrapper {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  justify-content: end;
 }
