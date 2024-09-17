@@ -22,6 +22,7 @@ const EditUsers = () => {
   const [changedCountry, setChangedCountry] = useState(currentUser.country);
   const [changedStatus, setChangedStatus] = useState(currentUser.status);
   const [error, setError] = useState("");
+  const [changesSaved, setChangesSaved] = useState(true);
 
   const isChanged = () => {
     return (
@@ -45,6 +46,7 @@ const EditUsers = () => {
       setChangedDepartment(user.department);
       setChangedCountry(user.country);
       setChangedStatus(user.status);
+      setChangesSaved(true);
     }
   }, [selectedUsername]);
 
@@ -57,6 +59,7 @@ const EditUsers = () => {
     setChangedDepartment(currentUser.department);
     setChangedCountry(currentUser.country);
     setChangedStatus(currentUser.status);
+    setChangesSaved(true);
   };
 
   const applyChanges = () => {
@@ -74,7 +77,14 @@ const EditUsers = () => {
 
     setNewUsers(updatedUsers);
     setSelectedUsername(changedUsername);
+    setChangesSaved(true);
   };
+
+  useEffect(() => {
+    if (isChanged()) {
+      setChangesSaved(false);
+    }
+  }, [changedUsername, changedDepartment, changedCountry, changedStatus]);
 
   return (
     <main className="page-wrapper">
@@ -127,7 +137,7 @@ const EditUsers = () => {
         </div>
       </section>
       <div className="buttons-wrapper">
-        {isChanged() && (
+        {!changesSaved && (
           <CustomButton
             text="Undo"
             onClick={clearChanges}
@@ -138,7 +148,7 @@ const EditUsers = () => {
         <CustomButton
           text="Save"
           onClick={applyChanges}
-          disabled={!isChanged() || error}
+          disabled={changesSaved || error}
           size="large"
         />
       </div>
