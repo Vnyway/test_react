@@ -5,6 +5,11 @@ import CustomButton from "../components/CustomButton";
 
 const Users = () => {
   const [selectedDepartments, setSelectedDepartments] = useState([]);
+
+  const resetFilters = () => {
+    setSelectedDepartments([]);
+  };
+
   return (
     <div>
       <CustomDropdown
@@ -14,7 +19,11 @@ const Users = () => {
         setSelectedFields={setSelectedDepartments}
         disabled={false}
       />
-      <CustomButton text="Delete" />
+      <CustomButton
+        image="/images/trash.png"
+        disabled={!selectedDepartments.length}
+        onClick={resetFilters}
+      />
     </div>
   );
 };
