@@ -8,16 +8,13 @@ import { departments, countries, statuses } from "../constants";
 const EditUsers = () => {
   const { newUsers, setNewUsers } = useContext(UserContext);
 
-  // Maintain a state for the usernames array
   const [usernames, setUsernames] = useState(
     newUsers.map((user) => ({ name: user.name }))
   );
 
-  // Current selected user state
   const [currentUser, setCurrentUser] = useState(newUsers[0]);
   const [selectedUsername, setSelectedUsername] = useState(usernames[0].name);
 
-  // Other state variables
   const [changedUsername, setChangedusername] = useState(selectedUsername);
   const [changedDepartment, setChangedDepartment] = useState(
     currentUser.department
@@ -26,12 +23,19 @@ const EditUsers = () => {
   const [changedStatus, setChangedStatus] = useState(currentUser.status);
   const [error, setError] = useState("");
 
-  // Function to find the user by name
+  const isChanged = () => {
+    return (
+      changedUsername !== currentUser.name ||
+      changedDepartment.value !== currentUser.department.value ||
+      changedCountry.value !== currentUser.country.value ||
+      changedStatus.value !== currentUser.status.value
+    );
+  };
+
   const findUser = (name) => {
     return newUsers.find((user) => user.name === name);
   };
 
-  // Update dependent states when selectedUsername changes
   useEffect(() => {
     const user = findUser(selectedUsername);
 
@@ -44,18 +48,17 @@ const EditUsers = () => {
     }
   }, [selectedUsername]);
 
-  // Update usernames list whenever newUsers changes
   useEffect(() => {
     setUsernames(newUsers.map((user) => ({ name: user.name })));
   }, [newUsers]);
 
-  // Reset to default values
   const clearChanges = () => {
-    setSelectedUsername(usernames[0].name);
-    setChangedusername(usernames[0].name);
+    setChangedusername(currentUser.name);
+    setChangedDepartment(currentUser.department);
+    setChangedCountry(currentUser.country);
+    setChangedStatus(currentUser.status);
   };
 
-  // Apply changes to the user list
   const applyChanges = () => {
     const updatedUsers = newUsers.map((user) =>
       user.name === selectedUsername
@@ -69,10 +72,7 @@ const EditUsers = () => {
         : user
     );
 
-    // Update the users in context
     setNewUsers(updatedUsers);
-
-    // Reset selected username and changedUsername after applying changes
     setSelectedUsername(changedUsername);
   };
 
@@ -127,16 +127,18 @@ const EditUsers = () => {
         </div>
       </section>
       <div className="buttons-wrapper">
-        <CustomButton
-          text="Undo"
-          onClick={clearChanges}
-          disabled={false}
-          size="small"
-        />
+        {isChanged() && (
+          <CustomButton
+            text="Undo"
+            onClick={clearChanges}
+            disabled={false}
+            size="small"
+          />
+        )}
         <CustomButton
           text="Save"
           onClick={applyChanges}
-          disabled={error}
+          disabled={!isChanged() || error}
           size="large"
         />
       </div>
