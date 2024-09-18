@@ -48,6 +48,13 @@ h2 {
   line-height: 32px;
 }
 
+h3 {
+  font-family: "Karla", sans-serif;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+}
+
 .page-wrapper {
   margin: 80px 100px;
   border: var(--primary-color) 1px solid;
@@ -326,4 +333,62 @@ h2 {
 
 .mistake {
   height: 20px;
+}
+
+.popup {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: black;
+  opacity: 20%;
+}
+
+.popup-closed {
+  display: none;
+}
+
+.card {
+  position: fixed;
+  z-index: 30;
+  width: 720px;
+  height: 444px;
+  background: #ffffff;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  opacity: 100%;
+  border: var(--primary-color) 1px solid;
+  padding: 40px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-closed {
+  display: none;
+}
+
+.card__options-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card__options {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  grid-template-columns: 2;
+}
+
+.card__buttons {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  gap: 20px;
 }

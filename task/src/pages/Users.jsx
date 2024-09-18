@@ -4,6 +4,7 @@ import { departments, countries, statuses } from "../constants";
 import CustomButton from "../components/CustomButton";
 import { UserContext } from "../context";
 import UserField from "../components/UserField";
+import Popup from "../components/Popup";
 
 const Users = () => {
   const { newUsers, setNewUsers } = useContext(UserContext);
@@ -41,8 +42,15 @@ const Users = () => {
     return departmentMatches && countryMatches && statusMatches;
   });
 
+  const [isPopupOpened, setIsPopupOpened] = useState(false);
+
   return (
     <main className="page-wrapper">
+      <Popup
+        users={newUsers}
+        isOpened={isPopupOpened}
+        setIsOpened={setIsPopupOpened}
+      />
       <section className="sort-wrapper">
         <p className="mistake">
           {selectedDepartments.length < 3
@@ -80,7 +88,11 @@ const Users = () => {
               onClick={resetFilters}
             />
           </div>
-          <CustomButton text="Add User" size="large" />
+          <CustomButton
+            text="Add User"
+            size="large"
+            onClick={() => setIsPopupOpened(true)}
+          />
         </div>
       </section>
       <section className="table">

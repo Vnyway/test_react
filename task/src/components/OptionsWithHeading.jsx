@@ -17,7 +17,7 @@ const OptionsWithHeading = ({
             className={`default-option ${
               opened ? "default-option-opened" : "default-option-closed"
             }`}>
-            <p>{selected}</p>
+            <p>{selected ? selected : `Select ${heading}`}</p>
             <img
               className={opened ? "arrow-opened" : ""}
               src="./images/arrow.png"
@@ -46,7 +46,7 @@ const OptionsWithHeading = ({
             className={`default-option ${
               opened ? "default-option-opened" : "default-option-closed"
             }`}>
-            <p>{selected.name}</p>
+            <p>{selected ? selected.name : `Select ${heading}`}</p>
             <img
               className={opened ? "arrow-opened" : ""}
               src="./images/arrow.png"

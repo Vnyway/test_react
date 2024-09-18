@@ -35,6 +35,7 @@ const FieldWithHeading = ({
             className="option-input"
             onChange={(e) => setSelected(e.target.value)}
             value={selected}
+            placeholder={defaultValue}
             type="text"
           />
         </div>
