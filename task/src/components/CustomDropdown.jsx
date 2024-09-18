@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const CustomDropdown = ({
   name,
@@ -8,6 +8,12 @@ const CustomDropdown = ({
   disabled,
 }) => {
   const [opened, setOpened] = useState(false);
+  useEffect(() => {
+    if (disabled) {
+      setOpened(false);
+      setSelectedFields([]);
+    }
+  }, [disabled]);
 
   const handleSelectField = (field) => {
     const isAlreadySelected = selectedFields.some(

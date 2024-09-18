@@ -10,6 +10,8 @@ const Users = () => {
   const [selectedDepartments, setSelectedDepartments] = useState([]);
   const resetFilters = () => {
     setSelectedDepartments([]);
+    setSelectedCountries([]);
+    setSelectedDepartments([]);
   };
 
   const [selectedCountries, setSelectedCountries] = useState([]);
