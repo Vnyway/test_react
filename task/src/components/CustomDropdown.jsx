@@ -10,14 +10,10 @@ const CustomDropdown = ({
   const [opened, setOpened] = useState(false);
 
   const handleSelectField = (field) => {
-    // Check if the field is already selected
     const isAlreadySelected = selectedFields.some(
       (selectedField) => selectedField.value === field.value
     );
 
-    console.log(isAlreadySelected);
-
-    // Only add the field if it's not already selected
     if (!isAlreadySelected) {
       setSelectedFields([
         ...selectedFields,
@@ -39,7 +35,7 @@ const CustomDropdown = ({
     <div className="options-with-heading">
       <div className="drop-down-menu">
         <div
-          onClick={() => setOpened((pv) => !pv)}
+          onClick={!disabled ? () => setOpened((pv) => !pv) : () => {}}
           className={`default-option ${
             opened ? "default-option-opened" : "default-option-closed"
           }`}>

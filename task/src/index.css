@@ -111,6 +111,7 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  min-width: 220px;
   font-weight: 400;
   color: var(--custom-gray);
 }
@@ -126,7 +127,7 @@ h2 {
   justify-content: space-between;
   align-items: center;
   padding: 8px 12px 8px 24px;
-  height: 34px;
+  height: 32px;
 }
 
 .options-with-heading .default-option-closed {
@@ -135,7 +136,7 @@ h2 {
 
 .options-with-heading .default-option-opened {
   border: var(--primary-color) 1px solid;
-  border-bottom: #ffffff;
+  border-bottom: #ffffff 1px solid;
 }
 
 .options-with-heading .arrow-opened {
@@ -151,7 +152,7 @@ h2 {
   overflow-y: auto;
   position: absolute;
   z-index: 1;
-  top: 51px;
+  top: 49px;
   background: #ffffff;
   left: 0;
   right: 0;
@@ -243,4 +244,75 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.user-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 36px;
+  color: var(--custom-gray);
+}
+
+.user-field h3 {
+  font-weight: 400;
+  width: 100px;
+  color: #1b2438;
+}
+
+.user-field span {
+  width: 200px;
+}
+
+.user-field .user-field__span {
+  width: 300px;
+}
+
+.table {
+  width: 100%;
+  border: var(--input-border) 1px solid;
+}
+
+.table .headings {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 36px;
+  border-bottom: var(--input-border) 1px solid;
+}
+
+.headings h4 {
+  font-weight: 400;
+  width: 200px;
+  color: #1b2438;
+}
+
+.headings .first-heading {
+  width: 100px;
+}
+
+.headings .headings__large {
+  width: 300px;
+}
+
+.headings .last-span {
+  width: 48px;
+}
+
+.filters {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dropdowns-button {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.dropdowns {
+  display: flex;
 }
