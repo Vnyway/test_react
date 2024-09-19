@@ -50,6 +50,7 @@ const Users = () => {
         users={newUsers}
         isOpened={isPopupOpened}
         setIsOpened={setIsPopupOpened}
+        setUsers={setNewUsers}
       />
       <section className="sort-wrapper">
         <p className="mistake">

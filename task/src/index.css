@@ -262,7 +262,10 @@ h3 {
 }
 
 .user-field h3 {
+  font-family: "Rubik", sans-serif;
   font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
   width: 100px;
   color: #1b2438;
 }

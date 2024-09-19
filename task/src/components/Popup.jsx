@@ -4,7 +4,7 @@ import CustomButton from "./CustomButton";
 import FieldWithHeading from "./FieldWithHeading";
 import OptionsWithHeading from "./OptionsWithHeading";
 
-const Popup = ({ isOpened, setIsOpened, users }) => {
+const Popup = ({ isOpened, setIsOpened, users, setUsers }) => {
   const [username, setUsername] = useState("");
   const [department, setDepartment] = useState(null);
   const [country, setCountry] = useState(null);
@@ -13,6 +13,34 @@ const Popup = ({ isOpened, setIsOpened, users }) => {
     users.map((user) => ({ name: user.name }))
   );
   const [error, setError] = useState("");
+
+  const handleAdd = () => {
+    setUsers([
+      ...users,
+      {
+        name: username,
+        status: { name: status.name, value: status.value },
+        department: { name: department.name, value: department.value },
+        country: { name: country.name, value: country.value },
+      },
+    ]);
+    setUsername("");
+    setDepartment(null);
+    setCountry(null);
+    setStatus(null);
+  };
+
+  const isAddDisabled = () => {
+    if (!username.trim()) return true;
+
+    const usernameExists = users.some((user) => user.name === username);
+    if (usernameExists) return true;
+
+    if (!department || !country || !status) return true;
+
+    return false;
+  };
+
   return (
     <>
       <div className={`popup ${isOpened ? "" : "popup-closed"}`}></div>
@@ -56,7 +84,12 @@ const Popup = ({ isOpened, setIsOpened, users }) => {
         </div>
         <div className="card__buttons">
           <CustomButton text="Cancel" onClick={() => setIsOpened(false)} />
-          <CustomButton text="Add" size="large" />
+          <CustomButton
+            text="Add"
+            size="large"
+            onClick={handleAdd}
+            disabled={isAddDisabled()}
+          />
         </div>
       </div>
     </>
