@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const OptionsWithHeading = ({
   heading,
@@ -8,16 +8,65 @@ const OptionsWithHeading = ({
   isObject,
 }) => {
   const [opened, setOpened] = useState(false);
+  const [search, setSearch] = useState("");
+
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (selected) {
+      if (isObject) {
+        setSearch(selected.name);
+      } else {
+        setSearch(selected);
+      }
+    } else {
+      setSearch("");
+    }
+  }, [selected, isObject]);
+
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const filteredValues = values.filter((option) => {
+    if (isObject) {
+      return option.name.toLowerCase().includes(search.trim().toLowerCase());
+    }
+    return option.name.toLowerCase().includes(search.trim().toLowerCase());
+  });
+
+  const nonMatchingValues = values.filter((option) => {
+    if (isObject) {
+      return !option.name.toLowerCase().includes(search.trim().toLowerCase());
+    }
+    return !option.name.toLowerCase().includes(search.trim().toLowerCase());
+  });
+
+  const sortedValues = [...filteredValues, ...nonMatchingValues];
+
+  const handleDivClick = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+    setOpened((pv) => !pv);
+  };
+
   if (!isObject) {
     return (
       <div className="options-with-heading">
         <span>{heading}</span>
-        <div onClick={() => setOpened((pv) => !pv)} className="drop-down-menu">
+        <div onClick={handleDivClick} className="drop-down-menu">
           <div
             className={`default-option ${
               opened ? "default-option-opened" : "default-option-closed"
             }`}>
-            <p>{selected ? selected : `Select ${heading}`}</p>
+            <input
+              type="text"
+              value={search}
+              onChange={handleChange}
+              placeholder={`Select ${heading}`}
+              ref={inputRef}
+            />
             <img
               className={opened ? "arrow-opened" : ""}
               src="./images/arrow.png"
@@ -25,7 +74,7 @@ const OptionsWithHeading = ({
             />
           </div>
           <div className={`${opened ? "options-opened" : "options-closed"}`}>
-            {values.map((option, index) => (
+            {sortedValues.map((option, index) => (
               <div
                 key={index}
                 onClick={() => setSelected(option.name)}
@@ -41,12 +90,18 @@ const OptionsWithHeading = ({
     return (
       <div className="options-with-heading">
         <span>{heading}</span>
-        <div onClick={() => setOpened((pv) => !pv)} className="drop-down-menu">
+        <div onClick={handleDivClick} className="drop-down-menu">
           <div
             className={`default-option ${
               opened ? "default-option-opened" : "default-option-closed"
             }`}>
-            <p>{selected ? selected.name : `Select ${heading}`}</p>
+            <input
+              type="text"
+              value={search}
+              onChange={handleChange}
+              placeholder={`Select ${heading}`}
+              ref={inputRef}
+            />
             <img
               className={opened ? "arrow-opened" : ""}
               src="./images/arrow.png"
@@ -54,7 +109,7 @@ const OptionsWithHeading = ({
             />
           </div>
           <div className={`${opened ? "options-opened" : "options-closed"}`}>
-            {values.map((option) => (
+            {sortedValues.map((option) => (
               <div
                 key={option.value}
                 onClick={() =>
