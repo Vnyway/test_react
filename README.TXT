@@ -1,4 +1,4 @@
-# Тестове завдання React.js
+# Тестове завдання React.js (демо сайту: https://bohdan-zhytchenko-test-task.netlify.app/)
 
 ## Завдання 1: Створити початковий React app
 
