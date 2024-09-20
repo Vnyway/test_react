@@ -1,10 +1,7 @@
-import { useContext, useEffect, useState } from "react";
-import CustomDropdown from "../components/CustomDropdown";
+import { useContext, useState } from "react";
 import { departments, countries, statuses } from "../constants";
-import CustomButton from "../components/CustomButton";
 import { UserContext } from "../context";
-import UserField from "../components/UserField";
-import Popup from "../components/Popup";
+import { Popup, CustomDropdown, CustomButton, UserField } from "../components";
 
 const Users = () => {
   const { newUsers, setNewUsers } = useContext(UserContext);

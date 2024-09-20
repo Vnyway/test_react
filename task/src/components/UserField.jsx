@@ -1,4 +1,4 @@
-import CustomButton from "./CustomButton";
+import { CustomButton } from "./";
 
 const UserField = ({ name, department, country, status, onClick }) => {
   return (

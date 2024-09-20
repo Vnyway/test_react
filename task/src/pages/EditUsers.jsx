@@ -1,8 +1,10 @@
 import { useState, useEffect, useContext } from "react";
-import OptionsWithHeading from "../components/OptionsWithHeading";
-import FieldWithHeading from "../components/FieldWithHeading";
 import { UserContext } from "../context";
-import CustomButton from "../components/CustomButton";
+import {
+  CustomButton,
+  FieldWithHeading,
+  OptionsWithHeading,
+} from "../components";
 import { departments, countries, statuses } from "../constants";
 
 const EditUsers = () => {

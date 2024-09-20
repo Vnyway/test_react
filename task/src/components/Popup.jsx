@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { departments, countries, statuses } from "../constants";
-import CustomButton from "./CustomButton";
-import FieldWithHeading from "./FieldWithHeading";
-import OptionsWithHeading from "./OptionsWithHeading";
+import { CustomButton, FieldWithHeading, OptionsWithHeading } from "./";
 
 const Popup = ({ isOpened, setIsOpened, users, setUsers }) => {
   const [username, setUsername] = useState("");
