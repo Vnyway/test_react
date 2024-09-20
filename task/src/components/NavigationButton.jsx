@@ -1,18 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
-const NavigationButton = ({
-  id,
-  text,
-  path,
-  isPageActive,
-  setIsPageActive,
-}) => {
+const NavigationButton = ({ id, text, path }) => {
+  const location = useLocation();
+  console.log(location);
   return (
     <Link
+      key={id}
       to={path}
-      onClick={() => setIsPageActive(id)}
       className={`page-button ${
-        isPageActive === id && "selected-page-button"
+        path === location.pathname && "selected-page-button"
       }`}>
       {text}
     </Link>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const CustomDropdown = ({
   name,
@@ -8,6 +8,9 @@ const CustomDropdown = ({
   disabled,
 }) => {
   const [opened, setOpened] = useState(false);
+  const [search, setSearch] = useState("");
+  const inputRef = useRef(null);
+
   useEffect(() => {
     if (disabled) {
       setOpened(false);
@@ -37,19 +40,57 @@ const CustomDropdown = ({
     }
   };
 
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const filteredValues = fields.filter(
+    (option) =>
+      !selectedFields.some(
+        (selectedField) => selectedField.value === option.value
+      ) && option.name.toLowerCase().includes(search.trim().toLowerCase())
+  );
+
+  const nonMatchingValues = fields.filter(
+    (option) =>
+      !selectedFields.some(
+        (selectedField) => selectedField.value === option.value
+      ) && !option.name.toLowerCase().includes(search.trim().toLowerCase())
+  );
+
+  const sortedValues = [
+    ...selectedFields,
+    ...filteredValues,
+    ...nonMatchingValues,
+  ];
+
+  const handleDivClick = () => {
+    if (inputRef.current && opened === false) {
+      inputRef.current.focus();
+    }
+    setOpened((pv) => !pv);
+  };
+
   return (
     <div className="options-with-heading">
       <div className="drop-down-menu">
         <div
-          onClick={!disabled ? () => setOpened((pv) => !pv) : () => {}}
+          onClick={!disabled ? handleDivClick : () => {}}
           className={`default-option ${
             opened ? "default-option-opened" : "default-option-closed"
           }`}>
-          {selectedFields.length ? (
-            <p>Selected ({selectedFields.length})</p>
-          ) : (
-            <p>Select {name}</p>
-          )}
+          <input
+            type="text"
+            disabled={disabled}
+            ref={inputRef}
+            value={search}
+            onChange={handleChange}
+            placeholder={
+              selectedFields.length
+                ? `Selected (${selectedFields.length})`
+                : `Select ${name}`
+            }
+          />
           <img
             className={opened ? "arrow-opened" : ""}
             src="./images/arrow.png"
@@ -57,7 +98,7 @@ const CustomDropdown = ({
           />
         </div>
         <div className={`${opened ? "options-opened" : "options-closed"}`}>
-          {fields.map((field) => (
+          {sortedValues.map((field) => (
             <div
               key={field.value}
               onClick={() => handleSelectField(field)}
