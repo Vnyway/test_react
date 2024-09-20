@@ -178,6 +178,10 @@ h3 {
   cursor: default;
 }
 
+.options-with-heading .selected-option {
+  background: var(--secondary-color);
+}
+
 .default-option .option-input {
   outline: none;
   border: none;

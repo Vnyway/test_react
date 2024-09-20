@@ -8,12 +8,10 @@ import { departments, countries, statuses } from "../constants";
 const EditUsers = () => {
   const { newUsers, setNewUsers } = useContext(UserContext);
 
-  const [usernames, setUsernames] = useState(
-    newUsers.map((user) => ({ name: user.name }))
-  );
+  const [usernames, setUsernames] = useState(newUsers.map((user) => user.name));
 
   const [currentUser, setCurrentUser] = useState(newUsers[0]);
-  const [selectedUsername, setSelectedUsername] = useState(usernames[0].name);
+  const [selectedUsername, setSelectedUsername] = useState(usernames[0]);
 
   const [changedUsername, setChangedusername] = useState(selectedUsername);
   const [changedDepartment, setChangedDepartment] = useState(
@@ -51,7 +49,7 @@ const EditUsers = () => {
   }, [selectedUsername]);
 
   useEffect(() => {
-    setUsernames(newUsers.map((user) => ({ name: user.name })));
+    setUsernames(newUsers.map((user) => user.name));
   }, [newUsers]);
 
   const clearChanges = () => {
